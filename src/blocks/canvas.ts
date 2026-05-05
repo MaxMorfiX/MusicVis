@@ -14,7 +14,7 @@ const drawRect = {
     "type": "draw_rect",
     "tooltip": "",
     "helpUrl": "",
-    "message0": "Draw Rect %1 x1 %2 y1 %3 x2 %4 y2 %5",
+    "message0": "Draw Rect %1 x %2 y %3 width %4 height %5",
     "args0": [
         {
             "type": "input_dummy",
@@ -22,28 +22,28 @@ const drawRect = {
         },
         {
             "type": "input_value",
-            "name": "x1",
+            "name": "x",
             "check": "Number"
         },
         {
             "type": "input_value",
-            "name": "y1",
+            "name": "y",
             "check": "Number"
         },
         {
             "type": "input_value",
-            "name": "x2",
+            "name": "width",
             "check": "Number"
         },
         {
             "type": "input_value",
-            "name": "y2",
+            "name": "height",
             "check": "Number"
         }
     ],
-    "colour": 225,
     "previousStatement": null,
     "nextStatement": null,
+    "colour": 225
 };
 
 const clearScreen = {

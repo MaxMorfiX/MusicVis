@@ -42,27 +42,23 @@ forBlock['get_energy'] = function() {
 }
 
 forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Generator) {
-    const x1 = generator.valueToCode(block, 'x1', Order.ATOMIC) || "0";
-    const x2 = generator.valueToCode(block, 'x2', Order.ATOMIC) || "0";
-    const y1 = generator.valueToCode(block, 'y1', Order.ATOMIC) || "0";
-    const y2 = generator.valueToCode(block, 'y2', Order.ATOMIC) || "0";
+    const x = generator.valueToCode(block, 'x', Order.ATOMIC) || "0";
+    const y = generator.valueToCode(block, 'y', Order.ATOMIC) || "0";
+    const width = generator.valueToCode(block, 'width', Order.ATOMIC) || "50";
+    const height = generator.valueToCode(block, 'height', Order.ATOMIC) || "50";
 
     const drawRect = generator.provideFunction_(
         'drawRect',
-        `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x1, x2, y1, y2) {
+        `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x, y, width, height) {
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
-            // Use the parameters, not hardcoded 10,10,150,100
-            const x = Math.min(x1, x2);
-            const y = Math.min(y1, y2);
-            const width = Math.abs(x2 - x1);
-            const height = Math.abs(y2 - y1);
+            
             ctx.fillStyle = "green";
             ctx.fillRect(x, y, width, height);
         }`
     );
 
-    const code = `${drawRect}(${x1}, ${x2}, ${y1}, ${y2});\n`;
+    const code = `${drawRect}(${x}, ${y}, ${width}, ${height});\n`;
     return code;
 }
 
@@ -73,7 +69,7 @@ forBlock['clear_screen'] = function(block: Blockly.Block, generator: Blockly.Gen
         `function ${generator.FUNCTION_NAME_PLACEHOLDER_}() {
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
-            // Use the parameters, not hardcoded 10,10,150,100
+
             const x = 0;
             const y = 0;
             const width = canvas.width;
