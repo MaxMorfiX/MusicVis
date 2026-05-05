@@ -70,3 +70,30 @@ if (ws) {
         runCode();
     });
 }
+
+// music management
+
+const fileInput = document.getElementById('musicFile') as HTMLInputElement | null;
+const playBtn = document.getElementById('playBtn') as HTMLButtonElement | null;
+const stopBtn = document.getElementById('stopBtn') as HTMLButtonElement | null;
+
+let audio: HTMLAudioElement = new Audio();
+let currentUrl: string | null = null;
+
+if (fileInput && playBtn && stopBtn) {
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files?.[0];
+        if (!file) return;
+
+        if (currentUrl) URL.revokeObjectURL(currentUrl);
+        currentUrl = URL.createObjectURL(file);
+        audio.src = currentUrl;
+        audio.load();
+    });
+
+    playBtn.addEventListener('click', () => audio.play());
+    stopBtn.addEventListener('click', () => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+}
