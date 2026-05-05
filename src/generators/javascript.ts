@@ -40,3 +40,28 @@ forBlock['get_energy'] = function() {
   // TODO: Change Order.NONE to the correct operator precedence strength
   return [code, Order.NONE];
 }
+
+forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Generator) {
+    const x1 = generator.valueToCode(block, 'x1', Order.ATOMIC) || "0";
+    const x2 = generator.valueToCode(block, 'x2', Order.ATOMIC) || "0";
+    const y1 = generator.valueToCode(block, 'y1', Order.ATOMIC) || "0";
+    const y2 = generator.valueToCode(block, 'y2', Order.ATOMIC) || "0";
+
+    const drawRect = generator.provideFunction_(
+        'drawRect',
+        `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x1, x2, y1, y2) {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            // Use the parameters, not hardcoded 10,10,150,100
+            const x = Math.min(x1, x2);
+            const y = Math.min(y1, y2);
+            const width = Math.abs(x2 - x1);
+            const height = Math.abs(y2 - y1);
+            ctx.fillStyle = "green";
+            ctx.fillRect(x, y, width, height);
+        }`
+    );
+
+    const code = `${drawRect}(${x1}, ${x2}, ${y1}, ${y2});\n`;
+    return code;
+}
