@@ -65,3 +65,24 @@ forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Genera
     const code = `${drawRect}(${x1}, ${x2}, ${y1}, ${y2});\n`;
     return code;
 }
+
+forBlock['clear_screen'] = function(block: Blockly.Block, generator: Blockly.Generator) {
+
+    const clearScreen = generator.provideFunction_(
+        'clearScreen',
+        `function ${generator.FUNCTION_NAME_PLACEHOLDER_}() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            // Use the parameters, not hardcoded 10,10,150,100
+            const x = 0;
+            const y = 0;
+            const width = canvas.width;
+            const height = canvas.height;
+            ctx.fillStyle = "gray";
+            ctx.fillRect(x, y, width, height);
+        }`
+    );
+
+    const code = `${clearScreen}();\n`;
+    return code;
+}

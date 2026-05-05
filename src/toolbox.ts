@@ -35,6 +35,10 @@ export const toolbox = {
                     kind: 'block',
                     type: 'draw_rect',
                 },
+                {
+                    kind: 'block',
+                    type: 'clear_screen'
+                }
             ],
         },
         {

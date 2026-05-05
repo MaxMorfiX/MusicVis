@@ -46,9 +46,19 @@ const drawRect = {
     "nextStatement": null,
 };
 
+const clearScreen = {
+    "type": "clear_screen",
+    "tooltip": "",
+    "helpUrl": "",
+    "message0": "clear screen",
+    "colour": 455,
+    "previousStatement": null,
+    "nextStatement": null,
+};
+
 // Create the block definitions for the JSON-only blocks.
 // This does not register their definitions with Blockly.
 // This file has no side effects!
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
-    drawRect,
+    drawRect, clearScreen
 ]);
