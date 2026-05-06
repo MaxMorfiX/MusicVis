@@ -21,7 +21,7 @@ const getEnergy = {
       "name": "label"
     }
   ],
-  "output": Number,
+  "output": "Number",
   "colour": 225
 };
 

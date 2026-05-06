@@ -33,13 +33,12 @@ forBlock['add_text'] = function (
     return code;
 };
 
-forBlock['get_energy'] = function() {
-
-  // TODO: Assemble javascript into the code variable.
-  const code = '20';
-  // TODO: Change Order.NONE to the correct operator precedence strength
-  return [code, Order.NONE];
-}
+forBlock['get_energy'] = function(
+    block: Blockly.Block,
+    generator: Blockly.CodeGenerator,
+) {
+    return ['getAnalyzerVolume()', Order.FUNCTION_CALL];
+};
 
 forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Generator) {
     const x = generator.valueToCode(block, 'x', Order.ATOMIC) || "0";
