@@ -73,7 +73,7 @@ forBlock['clear_screen'] = function(block: Blockly.Block, generator: Blockly.Gen
             const y = 0;
             const width = canvas.width;
             const height = canvas.height;
-            ctx.fillStyle = "gray";
+            ctx.fillStyle = "black";
             ctx.fillRect(x, y, width, height);
         }`
     );
