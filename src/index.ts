@@ -56,27 +56,75 @@ if (!blocklyDiv) {
 }
 const ws = Blockly.inject(blocklyDiv, { toolbox });
 
-// This function resets the code and output divs, shows the
-// generated code from the workspace, and evals the code.
+// ---------- Animation loop control ----------
+let stopAnimation: (() => void) | null = null;
+
+// This function resets the code and output divs, and runs the generated code
 const runCode = () => {
     const code = javascriptGenerator.workspaceToCode(ws as Blockly.Workspace);
     if (codeDiv) codeDiv.textContent = code;
     if (outputDiv) outputDiv.innerHTML = '';
-    eval(code);
+
+    // Stop any previously running animation loop
+    if (stopAnimation) {
+        stopAnimation();
+        stopAnimation = null;
+    }
+
+    // Split the generated code into function definitions and executable statements
+    const lastFuncDefIndex = code.lastIndexOf('function ');
+    let funcDefs = '';
+    let statements = code;
+
+    if (lastFuncDefIndex !== -1) {
+        // Find the matching closing brace of this last function definition
+        let braceStart = code.indexOf('{', lastFuncDefIndex);
+        let braceCount = 1;
+        let i = braceStart;
+        while (braceCount > 0 && i < code.length) {
+            i++;
+            if (code[i] === '{') braceCount++;
+            if (code[i] === '}') braceCount--;
+        }
+        const funcEnd = i + 1; // position after the matching '}'
+        funcDefs = code.substring(0, funcEnd);
+        statements = code.substring(funcEnd).trim();
+        if (statements.startsWith(';')) {
+            statements = statements.substring(1).trim();
+        }
+    }
+
+    // Build the new code with an animation loop
+    const wrappedCode = `
+        ${funcDefs}
+        let __running = true;
+        function __animationFrame() {
+            if (!__running) return;
+            try {
+                ${statements}
+            } finally {
+                requestAnimationFrame(__animationFrame);
+            }
+        }
+        __animationFrame();
+        window.__stopAnimation = () => { __running = false; };
+    `;
+
+    eval(wrappedCode);
+
+    // Store the stop function for later use
+    stopAnimation = (window as any).__stopAnimation;
 };
 
 if (ws) {
-    // Load the initial state from storage and run the code.
     load(ws);
-    runCode();   // ← now analyser is already initialised (null) → safe
+    runCode();
 
-    // Every time the workspace changes state, save the changes to storage.
     ws.addChangeListener((e: Blockly.Events.Abstract) => {
         if (e.isUiEvent) return;
         save(ws);
     });
 
-    // Whenever the workspace changes meaningfully, run the code again.
     ws.addChangeListener((e: Blockly.Events.Abstract) => {
         if (
             e.isUiEvent ||
@@ -109,20 +157,17 @@ if (fileInput && playBtn && stopBtn) {
         audio.src = currentUrl;
         audio.load();
 
-        // Tear down old context
         if (audioContext && audioContext.state !== 'closed') {
             audioContext.close();
         }
 
-        // Build a fresh AudioContext + analyser
         audioContext = new AudioContext();
         const source = audioContext.createMediaElementSource(audio);
         analyser = audioContext.createAnalyser();
-        analyser.fftSize = 2048; // good RMS resolution
+        analyser.fftSize = 2048;
         source.connect(analyser);
         analyser.connect(audioContext.destination);
 
-        // Optional: expose the analyser directly if you still need it elsewhere
         (window as any).audioAnalyser = analyser;
     });
 
@@ -130,6 +175,7 @@ if (fileInput && playBtn && stopBtn) {
         if (audioContext && audioContext.state === 'suspended') {
             audioContext.resume();
         }
+        audio.currentTime = 30;
         audio.play();
     });
 
