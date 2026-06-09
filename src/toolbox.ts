@@ -26,6 +26,10 @@ export const toolbox = {
                     kind: 'block',
                     type: 'get_energy',
                 },
+                {
+                    kind: 'block',
+                    type: 'get_frequency_data',
+                },
             ],
         },
         {

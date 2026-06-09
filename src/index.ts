@@ -91,16 +91,18 @@ const runCode = () => {
     ${funcDefs}
     let __running = true;
     function __animationFrame() {
-      if (!__running) return;
-      try {
+        if (!__running) return;
+        try {
         ${statements}
-      } finally {
+        } catch (e) {
+        console.error('Blockly animation error:', e);
+        } finally {
         requestAnimationFrame(__animationFrame);
-      }
+        }
     }
     __animationFrame();
     window.__stopAnimation = () => { __running = false; };
-  `;
+    `;
 
   eval(wrappedCode);
   stopAnimation = (window as any).__stopAnimation;

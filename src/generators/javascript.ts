@@ -69,3 +69,19 @@ forBlock['clear_screen'] = function(block: Blockly.Block, generator: Blockly.Gen
   );
   return `${clearScreen}();\n`;
 };
+
+forBlock['get_frequency_data'] = function(
+    block: Blockly.Block,
+    generator: Blockly.CodeGenerator,
+) {
+    const code = `(function() {
+        const analyser = window.audioAnalyser;
+        if (!analyser) {
+            return [];
+        }
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(dataArray);
+        return Array.from(dataArray);
+    })()`;
+    return [code, Order.FUNCTION_CALL];
+};

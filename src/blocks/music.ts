@@ -1,5 +1,3 @@
-//music.ts
-
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -7,11 +5,7 @@
  */
 
 import * as Blockly from 'blockly/core';
-import {javascriptGenerator, Order} from 'blockly/javascript';
-// Create a custom block called 'add_text' that adds
-// text to the output div on the sample app.
-// This is just an example and you should replace this with your
-// own custom blocks.
+
 const getEnergy = {
   "type": "get_energy",
   "tooltip": "",
@@ -27,9 +21,22 @@ const getEnergy = {
   "colour": 225
 };
 
-// Create the block definitions for the JSON-only blocks.
-// This does not register their definitions with Blockly.
-// This file has no side effects!
+const getFrequencyData = {
+  "type": "get_frequency_data",
+  "tooltip": "Returns an array of 128 numbers (0-255) representing the current audio frequencies.",
+  "helpUrl": "",
+  "message0": "Frequency Data %1",
+  "args0": [
+    {
+      "type": "input_dummy",
+      "name": "label"
+    }
+  ],
+  "output": "Array",
+  "colour": 225
+};
+
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
-    getEnergy,
+  getEnergy,
+  getFrequencyData,
 ]);
