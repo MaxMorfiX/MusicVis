@@ -1,3 +1,5 @@
+//javascript.ts
+
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -51,9 +53,13 @@ forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Genera
         `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x, y, width, height) {
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
-            
+            // Convert 0-100 values to pixels
+            const pixelX = (x / 100) * canvas.width;
+            const pixelY = (y / 100) * canvas.height;
+            const pixelW = (width / 100) * canvas.width;
+            const pixelH = (height / 100) * canvas.height;
             ctx.fillStyle = "green";
-            ctx.fillRect(x, y, width, height);
+            ctx.fillRect(pixelX, pixelY, pixelW, pixelH);
         }`
     );
 

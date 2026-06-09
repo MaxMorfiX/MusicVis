@@ -1,3 +1,5 @@
+//index.ts
+
 /**
  * @license
  * Copyright 2023 Google LLC
@@ -136,6 +138,62 @@ if (ws) {
         runCode();
     });
 }
+
+// ------------------------------------------------------------
+// Full-screen toggle for canvas
+// ------------------------------------------------------------
+const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+const fullscreenBtn = document.getElementById('fullscreenBtn') as HTMLButtonElement;
+
+function resizeCanvasForDisplay() {
+  // Make canvas drawing buffer match its visible size
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+
+  // Optional: re-run the current user code to redraw at new size
+  // (uncomment if you want immediate redraw)
+  // if (stopAnimation) runCode();
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    canvas.requestFullscreen().catch(err => {
+      console.error(`Fullscreen error: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+if (fullscreenBtn) {
+  fullscreenBtn.addEventListener('click', toggleFullscreen);
+}
+
+// Listen for fullscreen change to resize canvas
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement === canvas) {
+    // Entered fullscreen – resize canvas to fill screen
+    resizeCanvasForDisplay();
+  } else if (!document.fullscreenElement) {
+    // Exited fullscreen – restore original size? We'll keep current size,
+    // but you might want to reset to a default. For now, just resize to container.
+    resizeCanvasForDisplay();
+  }
+});
+
+// Also resize on window resize (e.g., if user splits screen)
+window.addEventListener('resize', () => {
+  // Only resize if not in fullscreen (fullscreen already handled)
+  if (!document.fullscreenElement) {
+    resizeCanvasForDisplay();
+  }
+});
+
+// Initial sizing after page load
+window.addEventListener('load', () => {
+  resizeCanvasForDisplay();
+});
 
 // ------------------------------------------------------------
 // Music playback UI + Web Audio graph
