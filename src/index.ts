@@ -200,6 +200,323 @@ function toggleFullscreen() {
   }
 }
 
+// ------------------------------------------------------------
+// Demo workspaces loader (using embedded objects)
+// ------------------------------------------------------------
+const demoSelect = document.getElementById('demoSelect') as HTMLSelectElement;
+const loadDemoBtn = document.getElementById('loadDemoBtn') as HTMLButtonElement;
+
+// Define your demos here.
+// Each demo is a key (ID) and the value is the workspace JSON object.
+// Example:
+const DEMO_EQUALIZER = {
+    "blocks": {
+        "languageVersion": 0,
+        "blocks": [
+            {
+                "type": "clear_screen",
+                "id": ";Dt#)W;~E5dj1d$B-B?n",
+                "x": 129,
+                "y": 145,
+                "next": {
+                    "block": {
+                        "type": "controls_for",
+                        "id": "XTyWvo7Fi@yw@)29O|D!",
+                        "fields": {
+                            "VAR": {
+                                "id": "b[$@eMvkVy6tEfVa6{WM"
+                            }
+                        },
+                        "inputs": {
+                            "FROM": {
+                                "shadow": {
+                                    "type": "math_number",
+                                    "id": "!K}*V(%GG(8/*nb#GWy7",
+                                    "fields": {
+                                        "NUM": 0
+                                    }
+                                }
+                            },
+                            "TO": {
+                                "shadow": {
+                                    "type": "math_number",
+                                    "id": "T:U{SLR!,ZR#+}E6)1ev",
+                                    "fields": {
+                                        "NUM": 100
+                                    }
+                                },
+                                "block": {
+                                    "type": "lists_length",
+                                    "id": "B_?`1hLF=ss@-$|rQHj*",
+                                    "inputs": {
+                                        "VALUE": {
+                                            "block": {
+                                                "type": "get_frequency_data",
+                                                "id": "/ymrCtx+vMO.Ea8*{`yL"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "BY": {
+                                "shadow": {
+                                    "type": "math_number",
+                                    "id": "f}}a}T$*0T~o{!*e,pzq",
+                                    "fields": {
+                                        "NUM": 1
+                                    }
+                                }
+                            },
+                            "DO": {
+                                "block": {
+                                    "type": "draw_rect",
+                                    "id": "y+,O8tp.SL}ALud!}[E;",
+                                    "inputs": {
+                                        "x": {
+                                            "block": {
+                                                "type": "math_arithmetic",
+                                                "id": "^QM{5J1l@j3qu/{?O8vh",
+                                                "fields": {
+                                                    "OP": "DIVIDE"
+                                                },
+                                                "inputs": {
+                                                    "A": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "LV$(*:n;pYLJ}[,T3?fD",
+                                                            "fields": {
+                                                                "NUM": 1
+                                                            }
+                                                        },
+                                                        "block": {
+                                                            "type": "variables_get",
+                                                            "id": "FSB.5kh;tw-$u4=xOn}#",
+                                                            "fields": {
+                                                                "VAR": {
+                                                                    "id": "b[$@eMvkVy6tEfVa6{WM"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "B": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "O83FG4m9wiR)re#G2Q4=",
+                                                            "fields": {
+                                                                "NUM": 1
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "y": {
+                                            "block": {
+                                                "type": "math_number",
+                                                "id": "Yt#%;{5a?21#Hr^ZsPG|",
+                                                "fields": {
+                                                    "NUM": 100
+                                                }
+                                            }
+                                        },
+                                        "width": {
+                                            "block": {
+                                                "type": "math_number",
+                                                "id": "%QO~sbRStc=@Z[O4U|;]",
+                                                "fields": {
+                                                    "NUM": 1.1
+                                                }
+                                            }
+                                        },
+                                        "height": {
+                                            "block": {
+                                                "type": "math_arithmetic",
+                                                "id": ")%.1%i#uF!,yO-=AJa`x",
+                                                "fields": {
+                                                    "OP": "DIVIDE"
+                                                },
+                                                "inputs": {
+                                                    "A": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "ZtOo0g(bnq@@^P$D3Rux",
+                                                            "fields": {
+                                                                "NUM": 1
+                                                            }
+                                                        },
+                                                        "block": {
+                                                            "type": "lists_getIndex",
+                                                            "id": "R}1A-5bUR@*a[;{*:gk4",
+                                                            "fields": {
+                                                                "MODE": "GET",
+                                                                "WHERE": "FROM_START"
+                                                            },
+                                                            "inputs": {
+                                                                "VALUE": {
+                                                                    "block": {
+                                                                        "type": "get_frequency_data",
+                                                                        "id": "M[];te1#5e*5AmiZ;%v~"
+                                                                    }
+                                                                },
+                                                                "AT": {
+                                                                    "block": {
+                                                                        "type": "variables_get",
+                                                                        "id": "0I]+Bj]U%2EP;-tiZ~LU",
+                                                                        "fields": {
+                                                                            "VAR": {
+                                                                                "id": "b[$@eMvkVy6tEfVa6{WM"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "B": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "O?,jT8wWk.Za#[)NH#*e",
+                                                            "fields": {
+                                                                "NUM": -2.5
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "next": {
+                                        "block": {
+                                            "type": "controls_if",
+                                            "id": "iu.1%QmBBv3RUZ6ngZ2N",
+                                            "inputs": {
+                                                "IF0": {
+                                                    "block": {
+                                                        "type": "logic_compare",
+                                                        "id": "X7QNB?T9kNvlQ*={%$a:",
+                                                        "fields": {
+                                                            "OP": "EQ"
+                                                        },
+                                                        "inputs": {
+                                                            "A": {
+                                                                "block": {
+                                                                    "type": "variables_get",
+                                                                    "id": "$Xc?eGxdLk!PZTa3++s}",
+                                                                    "fields": {
+                                                                        "VAR": {
+                                                                            "id": "b[$@eMvkVy6tEfVa6{WM"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "B": {
+                                                                "block": {
+                                                                    "type": "math_number",
+                                                                    "id": "lFFw$TmO80::IhFQDH8O",
+                                                                    "fields": {
+                                                                        "NUM": 123
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "DO0": {
+                                                    "block": {
+                                                        "type": "add_text",
+                                                        "id": "{:Cv`WYC+ryS%vOVlosR",
+                                                        "inputs": {
+                                                            "TEXT": {
+                                                                "shadow": {
+                                                                    "type": "text",
+                                                                    "id": "m@PQylsvcE]O.`)rjCKO",
+                                                                    "fields": {
+                                                                        "TEXT": "abc"
+                                                                    }
+                                                                },
+                                                                "block": {
+                                                                    "type": "variables_get",
+                                                                    "id": "t:*b5B{cMby@io3WV]o8",
+                                                                    "fields": {
+                                                                        "VAR": {
+                                                                            "id": "b[$@eMvkVy6tEfVa6{WM"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "variables": [
+        {
+            "name": "item",
+            "id": "!JFb?~*ivgS{NSht?:z0"
+        },
+        {
+            "name": "i",
+            "id": "b[$@eMvkVy6tEfVa6{WM"
+        }
+    ]
+};
+
+const demos: Record<string, any> = {
+  'equalizer': DEMO_EQUALIZER,
+  // Add more demos as you export them, e.g.:
+  // 'bouncing_bars': DEMO_BOUNCING_BARS,
+  // 'circle_pulse': DEMO_CIRCLE_PULSE,
+};
+
+// Populate dropdown from demos object keys
+for (const key in demos) {
+  if (Object.prototype.hasOwnProperty.call(demos, key)) {
+    const option = document.createElement('option');
+    option.value = key;
+    // Make a readable label (capitalize, replace underscores)
+    option.textContent = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    demoSelect.appendChild(option);
+  }
+}
+
+function loadDemoWorkspace(demoId: string) {
+  const demoData = demos[demoId];
+  if (!demoData) {
+    alert(`Demo "${demoId}" not found.`);
+    return;
+  }
+
+  const workspace = Blockly.getMainWorkspace();
+  Blockly.Events.disable();   // prevent triggering save during load
+  workspace.clear();          // remove all existing blocks
+  Blockly.serialization.workspaces.load(demoData, workspace);
+  Blockly.Events.enable();
+
+  // Save the loaded workspace to localStorage
+  save(workspace);
+  console.log(`Demo "${demoId}" loaded successfully.`);
+}
+
+if (loadDemoBtn) {
+  loadDemoBtn.addEventListener('click', () => {
+    const selected = demoSelect.value;
+    if (!selected) {
+      alert('Please select a demo from the dropdown.');
+      return;
+    }
+    loadDemoWorkspace(selected);
+  });
+}
+
 if (fullscreenBtn) {
   fullscreenBtn.addEventListener('click', toggleFullscreen);
 }
@@ -219,3 +536,5 @@ window.addEventListener('resize', () => {
 window.addEventListener('load', () => {
   resizeCanvasForDisplay();
 });
+
+(window as any).Blockly = Blockly;
