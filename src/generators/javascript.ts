@@ -17,10 +17,14 @@ forBlock['add_text'] = function (
   const addText = generator.provideFunction_(
     'addText',
     `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(text) {
+
+      console.log(text)  
+      return;
+
       const outputDiv = document.getElementById('output');
       const textEl = document.createElement('p');
       textEl.innerText = text;
-      outputDiv.appendChild(textEl);
+    //   outputDiv.appendChild(textEl);
     }`,
   );
   return `${addText}(${text});\n`;

@@ -52,7 +52,7 @@ const blocklyDiv = document.getElementById('blocklyDiv');
 if (!blocklyDiv) {
   throw new Error(`div with id 'blocklyDiv' not found`);
 }
-const ws = Blockly.inject(blocklyDiv, { toolbox });
+const ws = Blockly.inject(blocklyDiv, { toolbox, oneBasedIndex: false });
 
 let stopAnimation: (() => void) | null = null;
 
