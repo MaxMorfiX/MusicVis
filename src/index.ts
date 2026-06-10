@@ -9,6 +9,7 @@ import { blocks as textBlocks } from './blocks/text';
 import { blocks as musicBlocks } from './blocks/music';
 import { blocks as canvasBlocks } from './blocks/canvas';
 import { forBlock } from './generators/javascript';
+import { registerFieldColour, installAllBlocks as installAllColourBlocks } from '@blockly/field-colour';
 import { javascriptGenerator } from 'blockly/javascript';
 import { save, load } from './serialization';
 import { toolbox } from './toolbox';
@@ -54,6 +55,10 @@ const blocklyDiv = document.getElementById('blocklyDiv');
 if (!blocklyDiv) {
   throw new Error(`div with id 'blocklyDiv' not found`);
 }
+
+registerFieldColour();
+installAllColourBlocks()
+
 const ws = Blockly.inject(blocklyDiv, { toolbox, oneBasedIndex: false });
 
 let stopAnimation: (() => void) | null = null;

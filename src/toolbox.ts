@@ -82,6 +82,17 @@ export const toolbox = {
             ],
         },
         {
+            kind: "category",
+            name: "Colour",
+            categorystyle: "colour_category", // optional: style to match the category
+            contents: [
+                { kind: "block", type: "colour_picker" },
+                { kind: "block", type: "colour_random" },
+                { kind: "block", type: "colour_rgb" },
+                { kind: "block", type: "colour_blend" }
+            ]
+        },
+        {
             kind: 'category',
             name: 'Logic',
             categorystyle: 'logic_category',
