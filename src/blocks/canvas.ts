@@ -6,6 +6,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { colour } from 'blockly/blocks';
 import * as Blockly from 'blockly/core';
 
 const drawRect = {
@@ -49,6 +50,52 @@ const drawRect = {
     "colour": 225
 };
 
+const drawLine = {
+    "type": "draw_line",
+    "tooltip": "Draw a line from (x1,y1) to (x2,y2) with specified width and colour.",
+    "helpUrl": "",
+    "message0": "Draw Line %1 start x %2 y %3 end x %4 y %5 width %6 colour %7",
+    "args0": [
+        {
+            "type": "input_dummy",
+            "name": "DrawLine"
+        },
+        {
+            "type": "input_value",
+            "name": "x1",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "y1",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "x2",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "y2",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "width",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "colour",
+            "check": "Colour"
+        }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 225
+};
+
 const clearScreen = {
     "type": "clear_screen",
     "tooltip": "Clear the canvas (fill with black).",
@@ -59,6 +106,32 @@ const clearScreen = {
     "nextStatement": null,
 };
 
+const colourHsv = {
+    "type": "colour_hsv",
+    "message0": "colour with hue %1 saturation %2 value %3",
+    "args0": [
+        {
+            "type": "input_value",
+            "name": "H",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "S",
+            "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "V",
+            "check": "Number"
+        }
+    ],
+    "output": "Colour", // Outputs a colour type, compatible with your draw blocks
+    "style": "colour_blocks",
+    "tooltip": "Create a colour from its Hue (0-360), Saturation (0-1), and Value (0-1) components.",
+    "helpUrl": ""
+};
+
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
-    drawRect, clearScreen
+    drawRect, drawLine, clearScreen, colourHsv
 ]);

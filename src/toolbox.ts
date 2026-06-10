@@ -73,7 +73,48 @@ export const toolbox = {
                         }
                     }
                 },
-
+                {
+                    kind: 'block',
+                    type: 'draw_line',
+                    inputs: {
+                        x1: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 20 }
+                            }
+                        },
+                        y1: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 20 }
+                            }
+                        },
+                        x2: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 80 }
+                            }
+                        },
+                        y2: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 80 }
+                            }
+                        },
+                        width: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 3 }
+                            }
+                        },
+                        colour: {
+                            shadow: {
+                                type: 'colour_picker',
+                                fields: { COLOUR: '#FFFFFF' }
+                            }
+                        }
+                    }
+                },
                 {
                     kind: 'block',
                     type: 'clear_screen'
@@ -109,6 +150,30 @@ export const toolbox = {
                                 fields: { NUM: 255 }
                             }
                         },
+                    }
+                },
+                {   // ADD THE NEW BLOCK HERE
+                    kind: 'block',
+                    type: 'colour_hsv',
+                    inputs: {
+                        H: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { 'NUM': 0 }
+                            }
+                        },
+                        S: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { 'NUM': 0.5 }
+                            }
+                        },
+                        V: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { 'NUM': 1.0 }
+                            }
+                        }
                     }
                 },
                 { kind: "block", type: "colour_blend" }
