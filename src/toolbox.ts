@@ -40,6 +40,40 @@ export const toolbox = {
                 {
                     kind: 'block',
                     type: 'draw_rect',
+                    inputs: {
+                        x: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: {
+                                    NUM: 0,
+                                },
+                            },
+                        },
+                        y: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: {
+                                    NUM: 0,
+                                },
+                            },
+                        },
+                        width: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: {
+                                    NUM: 50,
+                                },
+                            },
+                        },
+                        height: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: {
+                                    NUM: 50,
+                                },
+                            },
+                        },
+                    },
                 },
                 {
                     kind: 'block',
