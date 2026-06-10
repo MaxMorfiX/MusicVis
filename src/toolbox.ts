@@ -44,37 +44,36 @@ export const toolbox = {
                         x: {
                             shadow: {
                                 type: 'math_number',
-                                fields: {
-                                    NUM: 0,
-                                },
-                            },
+                                fields: { NUM: 0 }
+                            }
                         },
                         y: {
                             shadow: {
                                 type: 'math_number',
-                                fields: {
-                                    NUM: 0,
-                                },
-                            },
+                                fields: { NUM: 0 }
+                            }
                         },
                         width: {
                             shadow: {
                                 type: 'math_number',
-                                fields: {
-                                    NUM: 50,
-                                },
-                            },
+                                fields: { NUM: 50 }
+                            }
                         },
                         height: {
                             shadow: {
                                 type: 'math_number',
-                                fields: {
-                                    NUM: 50,
-                                },
-                            },
+                                fields: { NUM: 50 }
+                            }
                         },
-                    },
+                        colour: {
+                            shadow: {
+                                type: 'colour_picker',
+                                fields: { COLOUR: '#00FF00' }   // default green
+                            }
+                        }
+                    }
                 },
+
                 {
                     kind: 'block',
                     type: 'clear_screen'
@@ -88,7 +87,30 @@ export const toolbox = {
             contents: [
                 { kind: "block", type: "colour_picker" },
                 { kind: "block", type: "colour_random" },
-                { kind: "block", type: "colour_rgb" },
+                {
+                    kind: "block",
+                    type: "colour_rgb",
+                    inputs: {
+                        RED: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 255 }
+                            }
+                        },
+                        GREEN: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 255 }
+                            }
+                        },
+                        BLUE: {
+                            shadow: {
+                                type: 'math_number',
+                                fields: { NUM: 255 }
+                            }
+                        },
+                    }
+                },
                 { kind: "block", type: "colour_blend" }
             ]
         },

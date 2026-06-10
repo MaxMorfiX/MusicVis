@@ -1,4 +1,4 @@
-//canvas.ts
+// canvas.ts
 
 /**
  * @license
@@ -8,15 +8,11 @@
 
 import * as Blockly from 'blockly/core';
 
-// Create a custom block called 'add_text' that adds
-// text to the output div on the sample app.
-// This is just an example and you should replace this with your
-// own custom blocks.
 const drawRect = {
     "type": "draw_rect",
-    "tooltip": "",
+    "tooltip": "Draw a rectangle with a chosen fill colour.",
     "helpUrl": "",
-    "message0": "Draw Rect %1 x %2 y %3 width %4 height %5",
+    "message0": "Draw Rect %1 x %2 y %3 width %4 height %5 colour %6",
     "args0": [
         {
             "type": "input_dummy",
@@ -41,6 +37,11 @@ const drawRect = {
             "type": "input_value",
             "name": "height",
             "check": "Number"
+        },
+        {
+            "type": "input_value",
+            "name": "colour",
+            "check": "Colour"   // Accepts any block that outputs a Colour type
         }
     ],
     "previousStatement": null,
@@ -50,7 +51,7 @@ const drawRect = {
 
 const clearScreen = {
     "type": "clear_screen",
-    "tooltip": "",
+    "tooltip": "Clear the canvas (fill with black).",
     "helpUrl": "",
     "message0": "clear screen",
     "colour": 455,
@@ -58,9 +59,6 @@ const clearScreen = {
     "nextStatement": null,
 };
 
-// Create the block definitions for the JSON-only blocks.
-// This does not register their definitions with Blockly.
-// This file has no side effects!
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     drawRect, clearScreen
 ]);

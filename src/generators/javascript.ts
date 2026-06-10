@@ -42,10 +42,11 @@ forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Genera
   const y = generator.valueToCode(block, 'y', Order.ATOMIC) || "0";
   const width = generator.valueToCode(block, 'width', Order.ATOMIC) || "50";
   const height = generator.valueToCode(block, 'height', Order.ATOMIC) || "50";
+  const colour = generator.valueToCode(block, 'colour', Order.ATOMIC) || "'#00FF00'";  // default green
 
   const drawRect = generator.provideFunction_(
     'drawRect',
-    `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x, y, width, height) {
+    `function ${generator.FUNCTION_NAME_PLACEHOLDER_}(x, y, width, height, colour) {
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
       // Convert 0–100 values to pixels
@@ -53,12 +54,12 @@ forBlock['draw_rect'] = function(block: Blockly.Block, generator: Blockly.Genera
       const pixelY = (y / 100) * canvas.height;
       const pixelW = (width / 100) * canvas.width;
       const pixelH = (height / 100) * canvas.height;
-      ctx.fillStyle = "green";
+      ctx.fillStyle = colour;
       ctx.fillRect(pixelX, pixelY, pixelW, pixelH);
     }`
   );
 
-  return `${drawRect}(${x}, ${y}, ${width}, ${height});\n`;
+  return `${drawRect}(${x}, ${y}, ${width}, ${height}, ${colour});\n`;
 };
 
 forBlock['clear_screen'] = function(block: Blockly.Block, generator: Blockly.Generator) {

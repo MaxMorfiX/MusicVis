@@ -57,7 +57,7 @@ if (!blocklyDiv) {
 }
 
 registerFieldColour();
-installAllColourBlocks()
+installAllColourBlocks({ javascript: javascriptGenerator });
 
 const ws = Blockly.inject(blocklyDiv, { toolbox, oneBasedIndex: false });
 
@@ -223,8 +223,8 @@ const DEMO_EQUALIZER = {
             {
                 "type": "clear_screen",
                 "id": ";Dt#)W;~E5dj1d$B-B?n",
-                "x": 129,
-                "y": 145,
+                "x": 124,
+                "y": 154,
                 "next": {
                     "block": {
                         "type": "controls_for",
@@ -277,65 +277,52 @@ const DEMO_EQUALIZER = {
                             "DO": {
                                 "block": {
                                     "type": "draw_rect",
-                                    "id": "y+,O8tp.SL}ALud!}[E;",
+                                    "id": "!X,1(hmO$t]|J8DyOo?P",
                                     "inputs": {
                                         "x": {
-                                            "block": {
-                                                "type": "math_arithmetic",
-                                                "id": "^QM{5J1l@j3qu/{?O8vh",
+                                            "shadow": {
+                                                "type": "math_number",
+                                                "id": "%;zpBs#}nMc)52VFvVcL",
                                                 "fields": {
-                                                    "OP": "DIVIDE"
-                                                },
-                                                "inputs": {
-                                                    "A": {
-                                                        "shadow": {
-                                                            "type": "math_number",
-                                                            "id": "LV$(*:n;pYLJ}[,T3?fD",
-                                                            "fields": {
-                                                                "NUM": 1
-                                                            }
-                                                        },
-                                                        "block": {
-                                                            "type": "variables_get",
-                                                            "id": "FSB.5kh;tw-$u4=xOn}#",
-                                                            "fields": {
-                                                                "VAR": {
-                                                                    "id": "b[$@eMvkVy6tEfVa6{WM"
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    "B": {
-                                                        "shadow": {
-                                                            "type": "math_number",
-                                                            "id": "O83FG4m9wiR)re#G2Q4=",
-                                                            "fields": {
-                                                                "NUM": 1
-                                                            }
-                                                        }
+                                                    "NUM": 0
+                                                }
+                                            },
+                                            "block": {
+                                                "type": "variables_get",
+                                                "id": "FSB.5kh;tw-$u4=xOn}#",
+                                                "fields": {
+                                                    "VAR": {
+                                                        "id": "b[$@eMvkVy6tEfVa6{WM"
                                                     }
                                                 }
                                             }
                                         },
                                         "y": {
-                                            "block": {
+                                            "shadow": {
                                                 "type": "math_number",
-                                                "id": "Yt#%;{5a?21#Hr^ZsPG|",
+                                                "id": "qaGycoKzyMrj=/M`PTP`",
                                                 "fields": {
                                                     "NUM": 100
                                                 }
                                             }
                                         },
                                         "width": {
-                                            "block": {
+                                            "shadow": {
                                                 "type": "math_number",
-                                                "id": "%QO~sbRStc=@Z[O4U|;]",
+                                                "id": "FUk:4{7Oe8x$?Oq:4[}M",
                                                 "fields": {
                                                     "NUM": 1.1
                                                 }
                                             }
                                         },
                                         "height": {
+                                            "shadow": {
+                                                "type": "math_number",
+                                                "id": "0[Gb:rE]+,VWj^Gz1G6f",
+                                                "fields": {
+                                                    "NUM": 50
+                                                }
+                                            },
                                             "block": {
                                                 "type": "math_arithmetic",
                                                 "id": ")%.1%i#uF!,yO-=AJa`x",
@@ -390,66 +377,52 @@ const DEMO_EQUALIZER = {
                                                     }
                                                 }
                                             }
-                                        }
-                                    },
-                                    "next": {
-                                        "block": {
-                                            "type": "controls_if",
-                                            "id": "iu.1%QmBBv3RUZ6ngZ2N",
-                                            "inputs": {
-                                                "IF0": {
-                                                    "block": {
-                                                        "type": "logic_compare",
-                                                        "id": "X7QNB?T9kNvlQ*={%$a:",
-                                                        "fields": {
-                                                            "OP": "EQ"
+                                        },
+                                        "colour": {
+                                            "shadow": {
+                                                "type": "colour_picker",
+                                                "id": ";p}mQ`1h%izJNBnL38?j",
+                                                "fields": {
+                                                    "COLOUR": "#33ff33"
+                                                }
+                                            },
+                                            "block": {
+                                                "type": "colour_rgb",
+                                                "id": "pt(1GZ;he|b7my}f#AV`",
+                                                "inputs": {
+                                                    "RED": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "/p1FcLeTsIbVR!i}mxL0",
+                                                            "fields": {
+                                                                "NUM": 255
+                                                            }
                                                         },
-                                                        "inputs": {
-                                                            "A": {
-                                                                "block": {
-                                                                    "type": "variables_get",
-                                                                    "id": "$Xc?eGxdLk!PZTa3++s}",
-                                                                    "fields": {
-                                                                        "VAR": {
-                                                                            "id": "b[$@eMvkVy6tEfVa6{WM"
-                                                                        }
-                                                                    }
-                                                                }
-                                                            },
-                                                            "B": {
-                                                                "block": {
-                                                                    "type": "math_number",
-                                                                    "id": "lFFw$TmO80::IhFQDH8O",
-                                                                    "fields": {
-                                                                        "NUM": 123
-                                                                    }
+                                                        "block": {
+                                                            "type": "variables_get",
+                                                            "id": "eqW3d_WH#Ay%at6kI@?u",
+                                                            "fields": {
+                                                                "VAR": {
+                                                                    "id": "b[$@eMvkVy6tEfVa6{WM"
                                                                 }
                                                             }
                                                         }
-                                                    }
-                                                },
-                                                "DO0": {
-                                                    "block": {
-                                                        "type": "add_text",
-                                                        "id": "{:Cv`WYC+ryS%vOVlosR",
-                                                        "inputs": {
-                                                            "TEXT": {
-                                                                "shadow": {
-                                                                    "type": "text",
-                                                                    "id": "m@PQylsvcE]O.`)rjCKO",
-                                                                    "fields": {
-                                                                        "TEXT": "abc"
-                                                                    }
-                                                                },
-                                                                "block": {
-                                                                    "type": "variables_get",
-                                                                    "id": "t:*b5B{cMby@io3WV]o8",
-                                                                    "fields": {
-                                                                        "VAR": {
-                                                                            "id": "b[$@eMvkVy6tEfVa6{WM"
-                                                                        }
-                                                                    }
-                                                                }
+                                                    },
+                                                    "GREEN": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "C;F7Gxq-9bFVM}`vHED[",
+                                                            "fields": {
+                                                                "NUM": 0
+                                                            }
+                                                        }
+                                                    },
+                                                    "BLUE": {
+                                                        "shadow": {
+                                                            "type": "math_number",
+                                                            "id": "yL%KaqVfhSz#@xC1olzm",
+                                                            "fields": {
+                                                                "NUM": 255
                                                             }
                                                         }
                                                     }
