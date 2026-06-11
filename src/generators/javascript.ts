@@ -164,3 +164,10 @@ forBlock['colour_hsv'] = function(block: Blockly.Block, generator: Blockly.Gener
 
   return [`${hsvToHex}(${hue}, ${saturation}, ${value})`, Order.FUNCTION_CALL];
 };
+
+forBlock['get_current_time'] = function(
+  block: Blockly.Block,
+  generator: Blockly.CodeGenerator,
+) {
+  return ['getCurrentTime()', Order.FUNCTION_CALL];
+};

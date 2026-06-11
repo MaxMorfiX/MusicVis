@@ -30,6 +30,10 @@ export const toolbox = {
                     kind: 'block',
                     type: 'get_frequency_data',
                 },
+                {
+                    kind: 'block',
+                    type: 'get_current_time',
+                },
             ],
         },
         {

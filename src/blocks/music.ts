@@ -36,7 +36,17 @@ const getFrequencyData = {
   "colour": 225
 };
 
+const getCurrentTime = {
+    "type": "get_current_time",
+    "message0": "time",
+    "output": "Number",
+    "colour": 225,
+    "tooltip": "Returns the current playback position in seconds.",
+    "helpUrl": ""
+};
+
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   getEnergy,
   getFrequencyData,
+  getCurrentTime,
 ]);

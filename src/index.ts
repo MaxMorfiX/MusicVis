@@ -134,7 +134,13 @@ function getAnalyzerVolume(): number {
     return Math.sqrt(sum / bufferLength);
 }
 
+/** Returns the current playback time (seconds) of the loaded audio. */
+function getCurrentTime(): number {
+  return audio ? audio.currentTime : 0;
+}
+
 (window as any).getAnalyzerVolume = getAnalyzerVolume;
+(window as any).getCurrentTime = getCurrentTime;
 
 // ------------------------------------------------------------
 // Blockly setup
@@ -560,8 +566,8 @@ const DEMO_CIRCLE = {
             {
                 "type": "clear_screen",
                 "id": "8CCNsE@WwT)9y63`Oovj",
-                "x": 0,
-                "y": 106,
+                "x": 61,
+                "y": 92,
                 "next": {
                     "block": {
                         "type": "controls_for",
@@ -591,54 +597,27 @@ const DEMO_CIRCLE = {
                                 },
                                 "block": {
                                     "type": "math_arithmetic",
-                                    "id": "F]]2)OuXO+/U1=6zatu*",
+                                    "id": "pYDV8.!8EkuB44MPag`J",
                                     "fields": {
-                                        "OP": "MINUS"
+                                        "OP": "DIVIDE"
                                     },
                                     "inputs": {
                                         "A": {
                                             "shadow": {
                                                 "type": "math_number",
-                                                "id": "vgdO[L;QJK~/7-XozIm:",
+                                                "id": "s1X[ZbK:7H;ivzj%s8MG",
                                                 "fields": {
                                                     "NUM": 1
                                                 }
                                             },
                                             "block": {
-                                                "type": "math_arithmetic",
-                                                "id": "pYDV8.!8EkuB44MPag`J",
-                                                "fields": {
-                                                    "OP": "DIVIDE"
-                                                },
+                                                "type": "lists_length",
+                                                "id": "`91LFq3^`3/D[Zx1%ZK0",
                                                 "inputs": {
-                                                    "A": {
-                                                        "shadow": {
-                                                            "type": "math_number",
-                                                            "id": "s1X[ZbK:7H;ivzj%s8MG",
-                                                            "fields": {
-                                                                "NUM": 1
-                                                            }
-                                                        },
+                                                    "VALUE": {
                                                         "block": {
-                                                            "type": "lists_length",
-                                                            "id": "`91LFq3^`3/D[Zx1%ZK0",
-                                                            "inputs": {
-                                                                "VALUE": {
-                                                                    "block": {
-                                                                        "type": "get_frequency_data",
-                                                                        "id": "HbpzNleQm%lZ6a:zmNTk"
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    "B": {
-                                                        "shadow": {
-                                                            "type": "math_number",
-                                                            "id": "O(.Z]mQ/0~u6(RAcK^b7",
-                                                            "fields": {
-                                                                "NUM": 4
-                                                            }
+                                                            "type": "get_frequency_data",
+                                                            "id": "HbpzNleQm%lZ6a:zmNTk"
                                                         }
                                                     }
                                                 }
@@ -647,9 +626,9 @@ const DEMO_CIRCLE = {
                                         "B": {
                                             "shadow": {
                                                 "type": "math_number",
-                                                "id": "h/F9l[D=:7!,{N.Ggefn",
+                                                "id": "O(.Z]mQ/0~u6(RAcK^b7",
                                                 "fields": {
-                                                    "NUM": 0
+                                                    "NUM": 4
                                                 }
                                             }
                                         }
@@ -885,38 +864,11 @@ const DEMO_CIRCLE = {
                                                                         },
                                                                         "AT": {
                                                                             "block": {
-                                                                                "type": "math_arithmetic",
-                                                                                "id": "y*MtjA~d%OK+*Tfs~QPy",
+                                                                                "type": "variables_get",
+                                                                                "id": "Avxn(C]41YU;AS)2C;dD",
                                                                                 "fields": {
-                                                                                    "OP": "MULTIPLY"
-                                                                                },
-                                                                                "inputs": {
-                                                                                    "A": {
-                                                                                        "shadow": {
-                                                                                            "type": "math_number",
-                                                                                            "id": "B}7P@?fg+xR;B6G@+c8K",
-                                                                                            "fields": {
-                                                                                                "NUM": 1
-                                                                                            }
-                                                                                        },
-                                                                                        "block": {
-                                                                                            "type": "variables_get",
-                                                                                            "id": "Avxn(C]41YU;AS)2C;dD",
-                                                                                            "fields": {
-                                                                                                "VAR": {
-                                                                                                    "id": "h|+%9[nK:KHVVhS_2KB7"
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    },
-                                                                                    "B": {
-                                                                                        "shadow": {
-                                                                                            "type": "math_number",
-                                                                                            "id": "3R`QN0FvqG+)9pJLg%s@",
-                                                                                            "fields": {
-                                                                                                "NUM": 1
-                                                                                            }
-                                                                                        }
+                                                                                    "VAR": {
+                                                                                        "id": "h|+%9[nK:KHVVhS_2KB7"
                                                                                     }
                                                                                 }
                                                                             }
@@ -1033,38 +985,11 @@ const DEMO_CIRCLE = {
                                                                                 },
                                                                                 "AT": {
                                                                                     "block": {
-                                                                                        "type": "math_arithmetic",
-                                                                                        "id": ";8.4f-}W=H$ivUK(F^D*",
+                                                                                        "type": "variables_get",
+                                                                                        "id": ":]C]_^pepB{$j=ZEzI6P",
                                                                                         "fields": {
-                                                                                            "OP": "MULTIPLY"
-                                                                                        },
-                                                                                        "inputs": {
-                                                                                            "A": {
-                                                                                                "shadow": {
-                                                                                                    "type": "math_number",
-                                                                                                    "id": "B}7P@?fg+xR;B6G@+c8K",
-                                                                                                    "fields": {
-                                                                                                        "NUM": 1
-                                                                                                    }
-                                                                                                },
-                                                                                                "block": {
-                                                                                                    "type": "variables_get",
-                                                                                                    "id": ":]C]_^pepB{$j=ZEzI6P",
-                                                                                                    "fields": {
-                                                                                                        "VAR": {
-                                                                                                            "id": "h|+%9[nK:KHVVhS_2KB7"
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            },
-                                                                                            "B": {
-                                                                                                "shadow": {
-                                                                                                    "type": "math_number",
-                                                                                                    "id": "ov{p$xTUz:.+41uWE;G}",
-                                                                                                    "fields": {
-                                                                                                        "NUM": 1
-                                                                                                    }
-                                                                                                }
+                                                                                            "VAR": {
+                                                                                                "id": "h|+%9[nK:KHVVhS_2KB7"
                                                                                             }
                                                                                         }
                                                                                     }
@@ -1489,7 +1414,7 @@ const DEMO_CIRCLE = {
             "id": "wS#=kj:Zz,;J4(thd|/)"
         }
     ]
-}
+};
 
 const demos: Record<string, any> = {
     'equalizer': DEMO_EQUALIZER,
@@ -1525,6 +1450,7 @@ function loadDemoWorkspace(demoId: string) {
 
     // Save the loaded workspace to localStorage
     save(workspace);
+    runCode();
     console.log(`Demo "${demoId}" loaded successfully.`);
 }
 
