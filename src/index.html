@@ -13,6 +13,8 @@
         <div class="music-mini">
             <input type="file" id="musicFile" accept="audio/*">
                 <div>
+                    <label>Start at (s):</label>
+                    <input type="number" id="startTime" value="30" step="1" min="0" style="width: 70px;">
                     <button id="playBtn">▶ Play</button>
                     <button id="stopBtn">⏹ Stop</button>
                     <button id="fullscreenBtn">⛶ Fullscreen</button>
@@ -22,7 +24,7 @@
                     <button id="loadDemoBtn">📂 Load Demo</button>
                 </div>
             </div>
-        <canvas id="canvas" height="250"></canvas>
+            <canvas id="canvas" height="250"></canvas>
       </div>
       <div id="blocklyDiv"></div>
     </div>
